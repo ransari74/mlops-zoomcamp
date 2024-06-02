@@ -1,0 +1,99 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: homework_03/data_loaders/taxi_data_loader.py
+  downstream_blocks:
+  - preparing_data
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: taxi_data_loader
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: taxi_data_loader
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: homework_03/transformers/preparing_data.py
+  downstream_blocks:
+  - encoding_and_train_py
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: preparing_data
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - taxi_data_loader
+  uuid: preparing_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: homework_03/transformers/encoding_and_train_py.py
+  downstream_blocks:
+  - mlflow_exporter_py
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: encoding_and_train.py
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - preparing_data
+  uuid: encoding_and_train_py
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: homework_03/data_exporters/mlflow_exporter_py.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: mlflow_exporter.py
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - encoding_and_train_py
+  uuid: mlflow_exporter_py
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-06-02 19:01:22.276870+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: good realm
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+uuid: good_realm
+variables_dir: /home/src/mage_data/homework_03
+widgets: []
