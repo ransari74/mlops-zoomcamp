@@ -1,28 +1,60 @@
 # 3.1 Data preparation: ETL and feature engineering
 
-## 1. Ingest raw data
+# Ingestion
 
-### Videos
+## 3.1.1 Creating a new project
 
-1. [Setup new project](https://youtu.be/7hKrQmoARD8)
-1. [Utility helper functions](https://youtu.be/FBh3P19lXj4)
-1. [Ingest data block](https://youtu.be/Ttfkry1QQD4)
+In order to create a new project, firstly, you need to right-click on a folder in Text editor, and choose `New Mage project`. Secondly, you need to open `Settings` and click on `Register project`.
 
-### Code
+[Video](https://youtu.be/7hKrQmoARD8)
 
--   [`cleaning.py`](https://github.com/mage-ai/mlops/blob/master/mlops/utils/data_preparation/cleaning.py)
--   [`feature_selector.py`](https://github.com/mage-ai/mlops/blob/master/mlops/utils/data_preparation/feature_selector.py)
--   [`splitters.py`](https://github.com/mage-ai/mlops/blob/master/mlops/utils/data_preparation/splitters.py)
--   [`ingest.py`](https://github.com/mage-ai/mlops/blob/master/mlops/unit_3_observability/data_loaders/ingest.py)
+Opening a text editor:
 
----
+* Go to the command center (At the top)
+* Type "text editor"
 
-## 2. Prepare data for training
+## 3.1.2 Data preparation - Ingestion
+
+The project `unit_1_data_preparation` now has an empty pipeline, and it can be developed further using blocks. The first one we'll create is an ingestion block, which uses Python code to download the parquet files from January to March of the green taxi datasets and concatenate them. Done that, generate a series of graphs and charts useful for data profiling.
+
+* **Note**: If the time chart isn't displayed, insert the following snippet `df['lpep_pickup_datetime_cleaned'] = df['lpep_pickup_datetime'].astype(np.int64) // 10**9` just above the `dfs.append(df)` line in `ingest.py`
+
+[Video](https://youtu.be/1lSOdTpoRug)
+
+Code: 
+- [`ingest.py`](https://github.com/mage-ai/mlops/blob/master/mlops/unit_3_observability/data_loaders/ingest.py)
+
+
+## 3.1.3 Utility helper functions
+
+Utility functions are already created in the `utils` folder. They will be then imported into the transformer block.
+
+[Video](https://youtu.be/FBh3P19lXj4)
+
+
+Code
+
+- [`cleaning.py`](https://github.com/mage-ai/mlops/blob/master/mlops/utils/data_preparation/cleaning.py)
+- [`feature_selector.py`](https://github.com/mage-ai/mlops/blob/master/mlops/utils/data_preparation/feature_selector.py)
+- [`splitters.py`](https://github.com/mage-ai/mlops/blob/master/mlops/utils/data_preparation/splitters.py)
+
+
+
+
+## 2. Data Preparation
 
 ### Videos
 
 1. [Data preparation block](https://youtu.be/TcTMVn3BxeY)
 1. [Visualize prepared data](https://youtu.be/j0Hfaoc5wRY)
+
+
+To see the correct histogram, change last two lines of the default code to:
+```python
+col = 'trip_distance'
+x = df_1[df_1[col] <= 20][col]
+```
+
 
 ### Code
 
